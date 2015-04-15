@@ -1,0 +1,75 @@
+def englishNum(n)
+    return "zero" if n ==0
+    return "Please enter a positive number" if n<0
+    result = ""
+    
+    ones = ['one',     'two',       'three',    'four',     'five',
+               'six',     'seven',     'eight',    'nine']
+    tens = ['ten',     'twenty',    'thirty',   'forty',    'fifty',
+               'sixty',   'seventy',   'eighty',   'ninety']
+    teens = ['eleven',  'twelve',    'thirteen', 'fourteen', 'fifteen',
+               'sixteen', 'seventeen', 'eighteen', 'nineteen']
+
+   if n>0 && n<10
+       result = ones[n-1]
+  end
+  
+  if n==10
+      result = tens[0]
+  end
+  
+  if n>=11 && n<=19
+      left = n- 10
+      puts left
+      result = teens[left-1]
+  end
+  
+    if n>=20 && n<=99
+      write =n/10
+      left = n - write*10
+      result = tens[write-1]
+      
+      puts write
+      puts left
+      if left>0
+          result = result + "-" + englishNum(left)
+      end
+  end
+  
+  if n>=100 && n<=999
+      write = n/100
+      left = n - write*100
+      if left>0
+          result = " and " + englishNum(left)
+      end
+      
+      result = englishNum(write) + " hundred" + result
+  end
+  
+  if n>=1000 && n<=999999
+      write = n/1000
+      left = n-write*1000
+      
+      if left > 0 && left <=99
+           result = " and " + englishNum(left)
+      elsif left>0 && left>99
+          result = " " + englishNum(left)
+      end
+      
+      result = englishNum(write) + " thousand" + result
+  end
+  
+  if n>999_999 && n<= 999_999_999
+      write = n/ 1_000_000
+      left = n - write*1_000_000
+      
+      if left > 0 && left <=99
+           result = " and " + englishNum(left)
+      elsif left>0 && left>99
+          result = " " + englishNum(left)
+      end
+      
+       result = englishNum(write) + " million" + result
+  end
+     return result
+end
