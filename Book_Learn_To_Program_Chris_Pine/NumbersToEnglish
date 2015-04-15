@@ -20,7 +20,6 @@ def englishNum(n)
   
   if n>=11 && n<=19
       left = n- 10
-      puts left
       result = teens[left-1]
   end
   
@@ -29,8 +28,6 @@ def englishNum(n)
       left = n - write*10
       result = tens[write-1]
       
-      puts write
-      puts left
       if left>0
           result = result + "-" + englishNum(left)
       end
