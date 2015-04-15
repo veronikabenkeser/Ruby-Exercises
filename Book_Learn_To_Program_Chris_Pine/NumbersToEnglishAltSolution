@@ -1,0 +1,79 @@
+def englishNum(n)
+    return "zero" if n ==0
+    return "Please enter a positive number" if n<0
+    result = ""
+    
+    ones = ['one',     'two',       'three',    'four',     'five',
+               'six',     'seven',     'eight',    'nine']
+    tens = ['ten',     'twenty',    'thirty',   'forty',    'fifty',
+               'sixty',   'seventy',   'eighty',   'ninety']
+    teens = ['eleven',  'twelve',    'thirteen', 'fourteen', 'fifteen',
+               'sixteen', 'seventeen', 'eighteen', 'nineteen']
+               
+    left = n           
+    write = left/ 1_000_000
+    left = left - write*1_000_000
+     
+    if write>0
+    
+        if left > 0 && left <=99
+            result = " and " + englishNum(left)
+        elsif left>0 && left>99
+            result = " " + englishNum(left)
+        end
+    left = 0      
+    result = englishNum(write) + " million" + result
+    end
+    
+    write = left/1000
+    left = left-write*1000
+      
+    if write >0
+          
+        if left > 0 && left <=99
+            result = " and " + englishNum(left)
+        elsif left>0 && left>99
+            result = " " + englishNum(left)
+        end
+    left = 0
+    result = englishNum(write) + " thousand" + result
+    end
+    
+    
+    write = left/100
+    left = left - write*100
+    
+    if write>0
+        if left>0
+          result = englishNum(write) + " hundred and " + englishNum(left)
+          left =0
+        else
+            result = englishNum(write) + " hundred"
+        end
+    end
+    
+    write = left/10
+    left = left-write*10
+    
+    if write>1
+        if left>0
+            result = tens[write-1] + "-" + englishNum(left) 
+        else
+            result = tens[write-1]
+        end
+    end
+    
+    if write == 1
+        if left ==0
+            result = tens[write-1]
+        else 
+            result = teens[left-1]
+        end
+    end
+    
+    if write<1 && left>0
+        result = ones[left-1]
+    end
+    
+     return result
+end
